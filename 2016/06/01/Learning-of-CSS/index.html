@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Learning of CSS | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+
+  </head>
+
+  <body>
+
+<header>
+	<a id="logo" href="/" title="Hexo">
+	<img src="/favicon.png" alt="Hexo"></a>
+	
+	
+		<!--搜索栏-->
+		<i class="js-toggle-search iconfont icon-search"></i>
+
+
+<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
+	<div class="search-form__inner">
+		<div>
+			<i class="iconfont icon-search"></i>
+			<input class="text-input" placeholder="Enter Key..." type="search">
+		</div>
+	</div>
+</form>
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		<ul id="menu-top" class="menu">
+			
+				
+				<li class="current-menu-item">
+					<a href="http://weibo.com/yumemor/" target="_blank">Weibo</a>
+				</li>
+			
+		</ul>
+	</div>
+</nav>
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+  
+    <h1 class="post-title" itemprop="name">
+      Learning of CSS
+    </h1>
+  
+
+	<div class='post-body mb'>
+		<h1 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h1><pre><code>&lt;head&gt;    
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;mystyle.css&quot;&gt;
+    &lt;title&gt;
+    &lt;/title&gt;
+&lt;/head&gt;
+</code></pre><h1 id="span"><a href="#span" class="headerlink" title="span"></a>span</h1><pre><code>&lt;p class=&quot;tip&quot;&gt;&lt;span&gt;提示：&lt;/span&gt;... ... ...&lt;/p&gt;
+</code></pre><p>.</p>
+<pre><code>p.tip span {
+font-weight:bold;
+color:#ff9955;
+}
+</code></pre><h1 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h1><pre><code>selector {
+property: value;
+            }
+</code></pre><h2 id="Some-details"><a href="#Some-details" class="headerlink" title="Some details"></a>Some details</h2><h3 id="Pixels-and-ems："><a href="#Pixels-and-ems：" class="headerlink" title="Pixels and ems："></a>Pixels and ems：</h3><blockquote>
+<p>Eg：font-size: 1em</p>
+</blockquote>
+<p><strong>em</strong> is a <strong>relative</strong> measure: one em is equal to the default font size on whatever screen the user is using</p>
+<h3 id="backup-values-for-font"><a href="#backup-values-for-font" class="headerlink" title="backup values for font"></a>backup values for font</h3><blockquote>
+<p>Eg: font-family: Tahoma, Verdana, sans-serif;</p>
+</blockquote>
+<p>Not all computer understand all fonts,so we could tell CSS to try several</p>
+<h3 id="Two-important-selectors"><a href="#Two-important-selectors" class="headerlink" title="Two important selectors"></a>Two important selectors</h3><h4 id="1-IDs"><a href="#1-IDs" class="headerlink" title="1.IDs"></a>1.IDs</h4><pre><code>In html:   
+
+          &lt;p id=&quot;intro&quot;&gt;Cascading with CSS&lt;/p&gt;
+In css:
+
+            #intro {  /*css*/  }
+</code></pre><h4 id="2-classes"><a href="#2-classes" class="headerlink" title="2.classes"></a>2.classes</h4><pre><code>In html:   
+
+           &lt;p class=&quot;red&quot;&gt;Cascading with CSS&lt;/p&gt;
+In css:
+
+             .red {  /*css*/  }
+</code></pre><h3 id="pseudo-class-selectors"><a href="#pseudo-class-selectors" class="headerlink" title="pseudo-class selectors"></a>pseudo-class selectors</h3><pre><code>selector:pseudo-class_selector
+ {
+   property: value;
+   }
+</code></pre><h4 id="1-hover"><a href="#1-hover" class="headerlink" title="1. hover:"></a>1. hover:</h4><p>A link you’re hovering your mouse over</p>
+<h4 id="2-first-child："><a href="#2-first-child：" class="headerlink" title="2.first-child："></a>2.first-child：</h4><p>Would make all paragraphs that are the first children of their parent elements red</p>
+<h4 id="3-nth-child"><a href="#3-nth-child" class="headerlink" title="3.nth-child:"></a>3.nth-child:</h4><h2 id="Position"><a href="#Position" class="headerlink" title="Position"></a>Position</h2><h3 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h3><pre><code>margin:1px 2px 3px 4px;
+</code></pre><p>Note：It goes around clockwise (going from top to right to bottom to left)</p>
+<h3 id="Borders"><a href="#Borders" class="headerlink" title="Borders"></a>Borders</h3><pre><code>border: 2px solid red;
+</code></pre><h3 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h3><h2 id="property"><a href="#property" class="headerlink" title="property"></a>property</h2><blockquote>
+<p><strong>link去掉底线:</strong>        text-decoration:none;  </p>
+<p><strong>One selector to rule them all</strong>     </p>
+<pre><code>* {
+     border: 2px solid black;
+                               } 
+</code></pre><p><strong>display:</strong><br> block:full width</p>
+<p> inline-block:allow other elements to sit next to it on the same line</p>
+<p> inline:It only takes up as much width as it needs</p>
+<p> none:content disappear</p>
+</blockquote>
+
+	</div>
+	<div class="meta split">
+		
+			<span>本文总阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+		
+		<time class="post-date" datetime="2016-06-01T18:09:53.000Z" itemprop="datePublished">2016-06-01</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	
+<div class="ds-thread" data-thread-key="Learning-of-CSS" data-title="Learning of CSS" data-url="http://yoursite.com/2016/06/01/Learning-of-CSS/"></div>
+<script type="text/javascript">
+
+var duoshuoQuery = {short_name:"yumemor"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+  
+</div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='http://oct8d1mqf.bkt.clouddn.com/2016-10-17-15%3A42%3A28.jpg' alt='John Doe'>
+					<div class="media__body">
+						<h4>Hexo</h4>
+						<p class='site-description'>null</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="http://weibo.com/yumemor/" target="_blank">
+				        			
+				        				<i class="iconfont icon-weibo"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://github.com/yumemor" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.zhihu.com/people/yumemor" target="_blank">
+				        			
+										<i class="iconfont icon-zhihu"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
+		
+		<span>Theme by <a href="http://github.com/yumemor">Yumemor</a>. Powered by <a href="http://hexo.io">Hexo</a></span>
+	</div>
+</footer>
+
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
+	
+		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
+</html>
