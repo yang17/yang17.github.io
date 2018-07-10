@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Nodejs Basic Notes | Hi, Jenny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+
+  </head>
+
+  <body>
+
+<header>
+	<a id="logo" href="/" title="Hi, Jenny">
+	<img src="/favicon.png" alt="Hi, Jenny"></a>
+	
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		  <ul id="menu-top" class="menu">
+
+			
+  			
+<div class="tagslist">
+	<p class="asidetitle">tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Algorithm/" title="Algorithm">Algorithm<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sort/" title="Sort">Sort<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Html/" title="Html">Html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gitpage/" title="Gitpage">Gitpage<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Socket/" title="Socket">Socket<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Restful/" title="Restful">Restful<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/macdown/" title="macdown">macdown<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+			
+		</ul>
+
+	</div>
+</nav>
+
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+  
+    <h1 class="post-title" itemprop="name">
+      Nodejs Basic Notes
+    </h1>
+  
+
+	<div class='post-body mb'>
+		<p>JavaScript<br><a href="https://medium.freecodecamp.org/3-questions-to-watch-out-for-in-a-javascript-interview-725012834ccb" target="_blank" rel="external">https://medium.freecodecamp.org/3-questions-to-watch-out-for-in-a-javascript-interview-725012834ccb</a></p>
+<p><a href="https://www.zhihu.com/question/24847805" target="_blank" rel="external">https://www.zhihu.com/question/24847805</a><br><a href="https://blog.csdn.net/fangjian1204/article/details/50585073" target="_blank" rel="external">https://blog.csdn.net/fangjian1204/article/details/50585073</a></p>
+<p><a href="http://www.javacoffeebreak.com/faq/faq0084.html" target="_blank" rel="external">http://www.javacoffeebreak.com/faq/faq0084.html</a></p>
+<h3 id="1-V8"><a href="#1-V8" class="headerlink" title="1. V8"></a>1. V8</h3><p>V8 is  JavaScript engine  (An interpreter which executes JavaScript code)</p>
+<h3 id="2-Node-js"><a href="#2-Node-js" class="headerlink" title="2. Node.js"></a>2. Node.js</h3><p>Node.js是一个能够在服务器端运行JavaScript的开放源代码、跨平台JavaScript运行环境.<br>Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side</p>
+<p>Node.js采用Google开发的V8运行代码，使用事件驱动、非阻塞和异步输入输出模型等技术来提高性能<br>Node.js uses an event-driven, non-blocking， asynchronous I/O.</p>
+<p>###3. networking modules</p>
+<pre><code>    net--- for creating TCP based server and clients
+    http-- for creating HTTP based web applications
+    https -- for creating TLS/SSL clients and severs
+</code></pre><p>###4. undefined &amp; not defined in JavaScript</p>
+<p>use a variable that dosen’t exist :<code>var name is not defined</code><br><code>typeof undeclared_variable</code> :  return <code>undefined</code>.</p>
+<pre><code>    var x; // declaring x
+    console.log(x); //output: undefined
+    console.log(y);  // Output: ReferenceError: y is not defined
+</code></pre><p>###5. drawback of creating true private method in JavaScript<br>        inefficient to use the memory<br>        because a new copy of the method would be created for each instance</p>
+<p>###6. What is “closure” in javascript?<br>外部函数（external function）获取内部函数私有属性的一种方法</p>
+<pre><code>        function myHouse(){
+          var __myname = &#39;Kevin&#39;;
+          var getMyname = function(){
+              return __myname;
+          };
+          return getMyname;
+        }
+
+        var getName = myHouse();
+        console.log(getName());//Kevin
+
+
+    即通过在myHouse()中返回getMyname函数，
+    getMyname函数中返回私有变量__myname，
+    从而获取私有变量，同时保护私有变量不会直接暴露给外部，
+    以免改变私有变量值。
+</code></pre><h3 id="6-1-how-would-you-make-a-variable-read-only"><a href="#6-1-how-would-you-make-a-variable-read-only" class="headerlink" title="6.1 how would you make a variable read-only"></a>6.1 how would you make a variable read-only</h3><pre><code>    Method 1. use closure, craete a inner function that returns its value;
+    Method 2. use `Object.defineProperty` specific writeable to false &amp; configurable to false
+</code></pre><p>###7. instanceof<br>        instanceof operator checks the current object and return true if the object is of the specified type</p>
+<p>###8. Self-Invoking anonymous function or Self-Executing anonymous function.</p>
+<p>put <code>()</code>after their name, the function will run immediately</p>
+<p>###9. Object-Based inheritance[继承自一个object]<br> one object inherit from another object without invoking a constructor function.</p>
+<p><code>Object.create()</code></p>
+<p>###10. Type-Based inheritance[继承自一个function]<br>need to call constructor function of the object from which you want to inherit.</p>
+<p>1.Prototypal Inheritance :</p>
+<pre><code>    Employee.prototype = new Person(&quot;Nishant&quot;, 24,5000);
+
+    var emp1 = new Employee(&quot;Google&quot;);
+
+    console.log(emp1 instanceof Person); // true
+    console.log(emp1 instanceof Employee); // true
+</code></pre><p>2.</p>
+<pre><code>    function Super(){
+            this.colors=[&quot;red&quot;,&quot;blue&quot;];
+        }
+
+    function Sub(){
+        Super.call(this);
+    }
+</code></pre><p>###11. prevent modification of object in JavaScript  </p>
+<pre><code>    1.Object.preventExtensions(employee);
+    //不能添加新properties or method，但是可以改变原有的
+
+    2.Object.seal(employee);
+    //prevent existing properties and methods from being deleted.
+    3.Object.freeze(employee); 
+    //only readable
+</code></pre><p>###11.1 javascript strict model<br>        “use strict”:</p>
+<pre><code>    [ changes previously accepted &quot;bad syntax&quot; 
+    into real errors ]
+    [ any assignment to a non-writable property will throw an error]
+    1. variables must declare
+    2. delete is not allowed.
+    3.  with() &amp; eval() is not allowed to create variables
+</code></pre><p>###12. when use case for anonymous function</p>
+<ol>
+<li><p>only used in one place</p>
+<pre><code>         setTimeout(function(){
+             alert(&quot;Hello&quot;);
+         },1000);
+</code></pre></li>
+<li><p>Anonymous functions are declared inline and inline functions have advantages in the case that they can access variable in the parent scopes.</p>
+<pre><code> &lt;button id=&quot;myBtn&quot;&gt;&lt;/button&gt;
+
+ //Add Event Listener
+ var btn = document.getElementById(&#39;myBtn&#39;);
+ btn.addEventListener(&#39;click&#39;, function () {
+   alert(&#39;button clicked&#39;);
+ });
+
+ //anonymous function as a callback function in event handler
+</code></pre></li>
+<li><p>Passing anonymous function as a parameter to calling function.</p>
+</li>
+</ol>
+<p>###13. non-enumerable property<br>Object can have properties that don’t show up when you iterate through object using for…in loop or using Object.keys()</p>
+<p>Data Properties:</p>
+<ul>
+<li>configurable: for removing via delete,changing the attributes.changing to accessor[比如person的name，可不可以删]</li>
+<li>enumerable: whether to return in a for-in loop or not</li>
+<li>writable: for changing the property’s value</li>
+<li><p>value: default value is undefined </p>
+<pre><code>  const object1 = {};
+
+  Object.defineProperty(object1, &#39;property1&#39;, {
+    value: 42,
+    writable: false
+  });
+</code></pre></li>
+</ul>
+<p>###14. callback<br>A callback is a plain JavaScript function passed to some method as an argument or option. Some callbacks are just events, called to give the user a chance to react when a certain state is triggered.</p>
+<p>###15 event handler<br> to use in conjunction with event handler and callback function to preserve code execution context while passing function as a parameter.</p>
+<pre><code> var clickHandler = {
+    message: &#39;click event handler&#39;,
+    handleClick: function(event) {
+        console.log(this.message);
+    }
+};
+
+var btn = document.getElementById(&#39;myBtn&#39;);
+// Add click event to btn and bind the clickHandler object
+btn.addEventListener(&#39;click&#39;, clickHandler.handleClick.bind(clickHandler));
+</code></pre><p>###16. DOM<br>document object model : access and change the content of the html</p>
+<p>###17. handle exceptions<br>JavaScript supports try, catch, finally and throw keywords for exception handling.</p>
+<p>###18. use of history object<br>to switch to history pages such as back and forward from current page or another page</p>
+<pre><code>    history.back()
+    history.forward()
+    history.go(number)
+</code></pre><p>###19. Factory function.<br>In JavaScript, any function can return a new object. When it’s not a constructor function or class, it’s called a factory function.</p>
+<p>###20. var vs. let<br>The var keyword behaves differently in function scopes and block scopes. A variable declared with var in a function scope can’t be accessed outside that function scope.<br>so it could avoid hoisting</p>
+<p>###Function</p>
+<ol>
+<li><p>getElementById().</p>
+<pre><code> Eg:
+ document.getElementById(&quot;demo&quot;).innerHTML = &quot;Hello JavaScript&quot;
+ 后面可以跟：
+ .src =&#39;pic_bulbon.gif&#39;
+ .style.fontSize = &quot;35px&quot;
+ .style.display = &quot;none&quot; //hide
+ .style.display=&#39;block&#39;  //show
+</code></pre></li>
+</ol>
+<ol>
+<li><p>JavaScript can “display” data in different ways:</p>
+<pre><code> Writing into an HTML element, using innerHTML.
+ Writing into the HTML output using document.write().
+ Writing into an alert box, using window.alert().
+ Writing into the browser console, using console.log().
+</code></pre></li>
+<li><p>== &amp; ===</p>
+<pre><code> ==    equal to
+ ===    equal value and equal type
+</code></pre></li>
+</ol>
+<ol>
+<li><p>Do Not Declare Strings, Numbers, and Booleans as Objects!<br> Object cannot be compared, it will always return false</p>
+</li>
+<li><p>module.exports</p>
+</li>
+<li><p>readfile  </p>
+<pre><code>require(&#39;fs&#39;);
+接收到的是一个buffer object，需要decode
+fs.readFile()   //asynchronous
+fs.readFileSync()   //synchronous
+</code></pre></li>
+<li><p>os Modeule</p>
+<pre><code> require(&#39;os&#39;)
+</code></pre></li>
+</ol>
+<ol>
+<li><p>Array</p>
+<pre><code> Recognize an Array
+ 1. typeof : will return is a object
+ 2. Array.isArray(fruits); 
+ 3. fruits instanceof Array 
+
+ //从屁股上
+ fruits.pop(); 
+ fruits.push();
+
+ //从脑袋上
+ shift() method removes the first array element and &quot;shifts&quot; all other elements to a lower index.
+ unshift() method adds a new element to an array (at the beginning),return length of array
+
+ splice(，) : remove element
+ concat() : merge
+ slice()  : create new array
+ toString()
+
+ //循环遍历数组：
+ 1. 用splice。delete的话会保留空值
+ 2. 倒叙遍历，否则有可能出错
+
+ while(arrayList.length) {
+       arrayList.pop();
+ }
+
+ //associative array:
+ Object.keys(counterArray).length
+</code></pre></li>
+</ol>
+<ol>
+<li><p>delete operator is used to delete property from object<br> 所以不能删除全局变量/局部变量<br> 也不能删除实例的prototype property.</p>
+<pre><code>     var Employee = {
+       company: &#39;xyz&#39;
+     }
+     var emp1 = Object.create(Employee);
+     delete emp1.company
+     console.log(emp1.company);
+</code></pre></li>
+</ol>
+<pre><code>        [Output]:xyz
+        因为emp1不拥有company，company 是个prototype property
+        可以通过delete emp1.__proto__.company来删除
+</code></pre><ol>
+<li><p>call()<br> you can use a method belonging to another object.<br> Difference Between call() and apply()</p>
+<pre><code>     call() takes any function arguments separately.
+
+     apply() takes any function arguments as an array.
+</code></pre></li>
+</ol>
+<ol>
+<li><p>isNaN()<br>returns true if the variable value is not a number.</p>
+</li>
+<li><p>get the reference of a caller function inside a function?</p>
+<p>   function func() {</p>
+<pre><code>  return arguments.callee; 
+</code></pre><p>   }<br>   func();</p>
+</li>
+<li><p>eval()</p>
+<pre><code>evaluates or executes an argument.
+</code></pre></li>
+<li><p>setTimeout(function() {}, 1000);</p>
+<pre><code>calls a function or evaluates an expression after a specified number of milliseconds
+</code></pre></li>
+<li><p>IIFE</p>
+<p>   Immediately Invoked Function Expression (IIFE)</p>
+</li>
+<li><p>with()<br>Specify a default object for one or a group of statements.</p>
+</li>
+</ol>
+
+		
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li></ul>
+
+	</div>
+	<div class="meta split">
+		
+			<span>总阅读量 : <span id="busuanzi_value_page_pv"></span> 次</span>
+		
+		<time class="post-date" datetime="2017-10-17T08:14:52.000Z" itemprop="datePublished">2017-10-17</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	<div id="disqus_thread"></div>
+<script type='text/javascript'>
+    /**
+    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//HiJenny.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+</div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='/head.png' alt='null'>
+					<div class="media__body">
+						<h4>Hi, Jenny</h4>
+						<p class='site-description'>Don’t Dissect The Frog, Build It</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="https://github.com/yang17" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.linkedin.com/in/yang17bu/" target="_blank">
+				        			
+				        				<i class="fab fa-linkedin"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.instagram.com/hiiii_jenny/" target="_blank">
+				        			
+										<i class="fab fa-instagram"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
+		
+		<span>Theme by <a href="http://github.com/yumemor">Yumemor</a>. Powered by <a href="http://hexo.io">Hexo</a></span>
+	</div>
+</footer>
+
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
+	
+		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
+</html>

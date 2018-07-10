@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Sorting Algorithm with Time Complexity --- 各类算法和时间复杂度分析.md | Hi, Jenny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+
+  </head>
+
+  <body>
+
+<header>
+	<a id="logo" href="/" title="Hi, Jenny">
+	<img src="/favicon.png" alt="Hi, Jenny"></a>
+	
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		  <ul id="menu-top" class="menu">
+
+			
+  			
+<div class="tagslist">
+	<p class="asidetitle">tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Algorithm/" title="Algorithm">Algorithm<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sort/" title="Sort">Sort<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Html/" title="Html">Html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gitpage/" title="Gitpage">Gitpage<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Socket/" title="Socket">Socket<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Restful/" title="Restful">Restful<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/macdown/" title="macdown">macdown<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+			
+		</ul>
+
+	</div>
+</nav>
+
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+  
+    <h1 class="post-title" itemprop="name">
+      Sorting Algorithm with Time Complexity --- 各类算法和时间复杂度分析.md
+    </h1>
+  
+
+	<div class='post-body mb'>
+		<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Time Complexity(Worst)</th>
+<th>Time Complexity(Average)</th>
+<th>Space complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insertion sort</td>
+<td>O(n<sup>2</sup>)</td>
+<td>O( n)</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>Merge sort</td>
+<td>O(nlog(n))</td>
+<td>O( nlog(n))</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Heapsort</td>
+<td>O(n log(n))</td>
+<td>O(n log(n))</td>
+<td>O(1)</td>
+</tr>
+<tr>
+<td>Quicksort</td>
+<td>O(n<sup>2</sup>)</td>
+<td>O(n log(n))</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Counting sort</td>
+<td>O(n log(n))</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conclustion</strong>: heapsort and mergesort are asymtotically optimal comparison sort</p>
+<p>#Insertion Sort</p>
+<blockquote>
+<p>for index 1 to n as i ,choose the [i]th number as key.<br>         Compare key with the numbers before it<br>//In this step above, the best case time is n,the worst case is n<sup>2</sup>.<br>        If  numbers &gt; key,<br>           shift it back one<br>        until the find the number is small than key,<br>        put the numbers behind it.<br>    (which actually in coding is the last number’s index who is &gt; key )</p>
+</blockquote>
+<p><strong>Attention</strong>：For insertion sort, the array before the Key is always sorted.</p>
+<p>#Merge Sort</p>
+<blockquote>
+<p>Merge Algorithm:<br>Given array A ,start ,mid ,end.<br>Divide it to two arrays.<br>For start to end,<br>    compare two array,<br>    put the smaller one on the position of A<br> <br>Merge Sort Algorithm:<br>Use recursion to divided array into small pieces<br>Then merge them</p>
+</blockquote>
+<p>#Heapsort</p>
+<blockquote>
+<p>Use array’s index to build a binary tree<br><code>Parent(i) : return [i/2]
+ Left(i):return 2i
+ Right(i):return 2i+1</code><br> <br> <br>MAX-HEAP algorithm:<br>only consider three nodes(parent left right) construct,<br>put the biggest one on parent<br>if the biggest one if not parent itself<br>  recursion the biggest one’s index<br>/<em>**<br>The step above is necessary because in BUILD-MAX-HEAP process, the parents(which is already sorted as biggest)might change. Because we are doing max-heapify from down to top.
+</em>/<br> <br> <br>BUILD-MAX-HEAP algorithm:<br>for [A.length/2] to 1 as i,<br>  MAX-HEAPIFY(A,i);<br> <br> <br>HEAPSORT algorithm:<br>BUILD-MAX-HEAP<br>continuously  swap the heap with last one<br>and MAX-HEAPIFY remain array.</p>
+</blockquote>
+<p><strong>Implementation:</strong> Priority queues</p>
+<p>#Quicksort</p>
+<blockquote>
+<p>PARITION algorithm:<br>choose end as  axis ,<br>for j from start to end-1<br>   if  A[i] &lt; axis,<br>   put it from the begin<br>    (starts from i,every swap,i++)<br>End for loop, swap axis with A[i+1]<br>//which means before the axis there totall has i numbers &lt; axis<br>return i+1,which is the new PARITION line<br> <br>QUICKSORT algorithm:<br>first partition whole arrays,<br>get the PARITION line,<br>use recursion to continue PARITION while(p&lt;r?)</p>
+</blockquote>
+<p>#Counting Sort</p>
+<blockquote>
+<p> Use a new array C,<br>C[i] contains the number of elements equal to i in array A<br>Then C[i] contains the number of elements less than or equal to i<br>Use a new array B as output,<br><code>B[C[A[j]]] = A[j],
+ C[A[j]] --</code></p>
+</blockquote>
+<p>#Bucket Sort<br>类似hash, Array 里面装链表或者list</p>
+
+		
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sort/">Sort</a></li></ul>
+
+	</div>
+	<div class="meta split">
+		
+			<span>总阅读量 : <span id="busuanzi_value_page_pv"></span> 次</span>
+		
+		<time class="post-date" datetime="2017-01-30T23:14:52.000Z" itemprop="datePublished">2017-01-30</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	<div id="disqus_thread"></div>
+<script type='text/javascript'>
+    /**
+    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//HiJenny.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+</div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='/head.png' alt='null'>
+					<div class="media__body">
+						<h4>Hi, Jenny</h4>
+						<p class='site-description'>Don’t Dissect The Frog, Build It</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="https://github.com/yang17" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.linkedin.com/in/yang17bu/" target="_blank">
+				        			
+				        				<i class="fab fa-linkedin"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.instagram.com/hiiii_jenny/" target="_blank">
+				        			
+										<i class="fab fa-instagram"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
+		
+		<span>Theme by <a href="http://github.com/yumemor">Yumemor</a>. Powered by <a href="http://hexo.io">Hexo</a></span>
+	</div>
+</footer>
+
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
+	
+		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
+</html>

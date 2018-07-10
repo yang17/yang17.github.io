@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Nodejs Basic Notes 2 | Hi, Jenny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+
+  </head>
+
+  <body>
+
+<header>
+	<a id="logo" href="/" title="Hi, Jenny">
+	<img src="/favicon.png" alt="Hi, Jenny"></a>
+	
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		  <ul id="menu-top" class="menu">
+
+			
+  			
+<div class="tagslist">
+	<p class="asidetitle">tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Algorithm/" title="Algorithm">Algorithm<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sort/" title="Sort">Sort<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Html/" title="Html">Html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gitpage/" title="Gitpage">Gitpage<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Socket/" title="Socket">Socket<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Restful/" title="Restful">Restful<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/macdown/" title="macdown">macdown<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+			
+		</ul>
+
+	</div>
+</nav>
+
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+  
+    <h1 class="post-title" itemprop="name">
+      Nodejs Basic Notes 2
+    </h1>
+  
+
+	<div class='post-body mb'>
+		<p><a href="https://www.tuputech.com/" target="_blank" rel="external">https://www.tuputech.com/</a><br><a href="https://nodeschool.io/" target="_blank" rel="external">https://nodeschool.io/</a><br>Node.js npm express</p>
+<p>Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.</p>
+<p>Node.js is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side</p>
+<p>##Event-driven:<br>    也叫select/epoll，select/epoll的好处就在于单个process就可以同时处理多个网络连接的IO。它的基本原理就是select/epoll这个function会不断的轮询所负责的所有socket，当某个socket有数据到达了，就通知用户进程<br>    当用户进程调用了select，那么整个进程会被block</p>
+<pre><code>process blocks incall to select, waiting for one possibly many sockets to becom readable.
+process blocks while data copied into appliction buffer
+</code></pre><p>##NPM<br>is a package manager for Node.js<br><code>npm install XXXmoudules
+npm init ----&gt; package.json
+npm install 会自动install所有需要的包</code></p>
+<p>##Socket<br>Socket.IO is a JavaScript library for realtime web applications.</p>
+<p>##Express RESTful API</p>
+<pre><code>    var express = require(&#39;express&#39;);
+    var app = express();
+
+    app.listen(3000);    
+
+    【Express的framework】
+    https://segmentfault.com/a/1190000011049112
+</code></pre><ol>
+<li><p>get  请求</p>
+<pre><code> app.get(path,function(request, response));
+ 第一个参数path为请求的路径
+ 第二个参数为处理请求的回调函数，有两个参数分别是：
+         request 代表请求信息
+         response 代表响应信息
+</code></pre></li>
+</ol>
+<p>##为什么不需要Apach这种web-server<br>nodejs的http库实现了完整HTTP1.1的全部功能（事实上，这部分的源代码正是copy自nginx</p>
+<p>##Read html/txt file<br><code>var http = require(&#39;http&#39;);</code><br><code>var url = require(&#39;url&#39;);</code><br><code>var fs = require(&#39;fs&#39;);</code><br><strong><code>var q = url.parse(req.url, true);</code></strong> Parse an address<br>txt : <code>fs.createReadStream(&#39;./txt&#39;)</code></p>
+<p>##EventEmitter<br>var events = require(‘events’);<br>var eventEmitter = new events.EventEmitter();</p>
+<pre><code>    /* Assign the event handler to an event(an function) */
+    Assign the event handler to an event:
+    eventEmitter.on(&#39;scream&#39;, myEventHandler);
+
+    /* 这里可以传参数*/
+    eventEmitter.emit(&#39;scream&#39;);
+</code></pre><p>##Sever.js 和 index.html是如何通讯的</p>
+<ol>
+<li>initial app as a http server</li>
+<li>define a router<pre><code> use `app.get(&#39;/&#39;, function(req, res){`
+ use `res.sendFile` function, to router to index.html
+ `res.send` 是send 文字 到页面
+</code></pre></li>
+<li>listening on port</li>
+<li>socket on : listening</li>
+<li>socket emit : send</li>
+</ol>
+<p><code>app.use</code><br>        use()method is used for specifying the 404 handler<br>        Or other public/images<br>        parse request body</p>
+<p><code>app.router</code><br> chainable route handlers for a route path<br> 比如get之后又接着post put</p>
+<p><code>app.get</code> reseponsbile for the requeset ： URL/data<br><code>app.post</code>request data<br><code>app.delete</code></p>
+<p><code>req.header</code> Request Headers</p>
+<p><code>res.download()    Prompt a file to be downloaded.
+res.end()    End the response process.
+res.json()    Send a JSON response.
+res.jsonp()    Send a JSON response with JSONP support.
+res.redirect()    Redirect a request.
+res.render()    Render a view template.
+res.send()    Send a response of various types.
+res.sendFile()    Send a file as an octet stream.
+res.sendStatus()    Set the response status code and send its string representation as the response body.</code></p>
+<p>1.buffer<br>2.Stream<br>3.pipe</p>
+<p>#Js<br><a href="https://www.jianshu.com/p/037652944207" target="_blank" rel="external">Link</a></p>
+<ol>
+<li><p>JS 继承有哪几种方式</p>
+<pre><code> 1. Apply() or call()
+         Animal.apply(this,arguments);
+ 2. prototype    
+         Dog.prototype = new Animal();
+ 3. extend
+</code></pre></li>
+<li><p>use strict</p>
+<pre><code> 消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;
+ 消除代码运行的一些不安全之处，保证代码运行的安全；
+ 提高编译器效率，增加运行速度；
+ 为未来新版本的Javascript做好铺垫。
+
+ 2.会将拼写错误转成异常
+ 3.全局变量显式声明
+ 4.禁用with，eval
+ 5.禁止删除声明变量
+</code></pre></li>
+<li><p>V8(javascript runtime engine)垃圾回收机制<br> <a href="https://medium.com/@_lrlna/garbage-collection-in-v8-an-illustrated-guide-d24a952ee3b8" target="_blank" rel="external">link</a></p>
+<pre><code> Allocated in memory:
+ garbage collector’s job is to go through objects that 
+ are allocated in memory and determine whether they are 
+ dead or alive. Those that are alive get to stay in 
+ memory, those that are dead get removed, and memory gets 
+ allocated back to the heap
+
+ Dead or alive?
+ The basic check for when an object is dead or alive, 
+ is     whether or not the client, or the program that
+ executes the code, can reach it
+</code></pre></li>
+</ol>
+<pre><code>    Callstack &amp; heap
+    V8 allocates memory in the heap as you create
+    new objects, 
+    V8 divides the heap into two parts:
+     yung space and old space
+     you eventually run out memory, 
+     so V8 will have to run a collection to clean up
+</code></pre><p>4.web后端缓存策略有哪些？</p>
+<pre><code>    1.利用redis(node-redis)或 memcached
+    在需要缓存的请求到达时，先检查redis数据库是否有
+    如果不存在，则从对应数据库获取数据，然后将数据写入redis数据库，并设置过期时间。
+
+    2.将图片等数据放在CDN缓存，可以大大减轻自己服务器压力
+    CDN(Content Delivery Network)
+</code></pre><p>5.闭包 Closure<br>        外部函数（external function）获取内部函数私有属性的一种方法</p>
+<pre><code>        function myHouse(){
+          var __myname = &#39;Kevin&#39;;
+          var getMyname = function(){
+              return __myname;
+          };
+          return getMyname;
+        }
+
+        var getName = myHouse();
+        console.log(getName());//Kevin
+
+
+    即通过在myHouse()中返回getMyname函数，
+    getMyname函数中返回私有变量__myname，
+    从而获取私有变量，同时保护私有变量不会直接暴露给外部，
+    以免改变私有变量值。
+</code></pre><ol>
+<li><p>ES8新特性</p>
+<p> 1.String padding</p>
+<pre><code> `padStart 和 padEnd`
+ `&#39;es8&#39;.padStart(14, &#39;wow&#39;);  // &#39;wowwowwowwoes8&#39;`
+</code></pre><p> 2.Object.values and Object.entries</p>
+<pre><code> Object.values : enumerate all 
+ Object.entries : 返回一个给定对象自身可遍历属性 [key, value] 的数组
+</code></pre></li>
+</ol>
+<ol>
+<li>Why Express: Its lightweight<pre><code> 1. Support for Connect middleware, allowing many extensions and useful features
+ 2.  Use redis to achieve sessions
+ 3.  easy templating (based on ejs frame)
+ 4. graceful error handling
+</code></pre></li>
+</ol>
+<ol>
+<li>请说下express 4中app和router的区别 ？</li>
+</ol>
+<p>答：express.Router 可以认为是一个微型的只用来处理中间件与控制器的 app，它拥有和 app 类似的方法，例如 get、post、all、use 等等。router它解决了直接把 app 暴露给其它模块使得 app 有被滥用的风险</p>
+<ol>
+<li><a href="https://www.w3ctech.com/topic/1969" target="_blank" rel="external">https://www.w3ctech.com/topic/1969</a></li>
+<li><a href="https://github.com/jimuyouyou/node-interview-questions" target="_blank" rel="external">https://github.com/jimuyouyou/node-interview-questions</a></li>
+</ol>
+<hr>
+<p>###1. Why is Node.js Single-threaded?</p>
+<p>Node.js is single-threaded for async processing. By doing async processing on a single-thread under typical web loads, more performance and scalability can be achieved as opposed to the typical thread-based implementation.</p>
+<p><a href="https://blog.csdn.net/fangjian1204/article/details/50585073" target="_blank" rel="external">https://blog.csdn.net/fangjian1204/article/details/50585073</a></p>
+<p>###2. Explain callback in Node.js.</p>
+<p>A callback function is called at the completion of a given task. This allows other code to be run in the meantime and prevents any blocking.  Being an asynchronous platform, Node.js heavily relies on callback. All APIs of Node are written to support callbacks. </p>
+<p>callback hell :  result of heavily nested callbacks that make the code not only unreadable but also difficult to maintain</p>
+<p>prevent:</p>
+<ul>
+<li>Handle every single error</li>
+<li>Keep your code shallow</li>
+<li>Modularize – split the callbacks into smaller, independent functions that can be called with some parameters then joining them to achieve desired results</li>
+</ul>
+<p>###3. Node.js and Ajax</p>
+<p>Ajax is primarily designed for dynamically updating a particular section of a page’s content, without having to update the entire page. </p>
+<p>Node.js is used for developing client-server applications.</p>
+<p>###4. What are “streams” in Node.js? Explain the different types of streams present in Node.js.</p>
+<p>Streams are objects that allow reading of data from the source and writing of data to the destination as a continuous process.</p>
+<p>There are four types of streams.</p>
+<p>  to facilitate the reading operation<br>to facilitate the writing operation<br>to facilitate both read and write operations<br>is a form of Duplex stream that performs computations based on the available input </p>
+
+		
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Node-js/">Node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Restful/">Restful</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Socket/">Socket</a></li></ul>
+
+	</div>
+	<div class="meta split">
+		
+			<span>总阅读量 : <span id="busuanzi_value_page_pv"></span> 次</span>
+		
+		<time class="post-date" datetime="2017-10-30T08:14:52.000Z" itemprop="datePublished">2017-10-30</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	<div id="disqus_thread"></div>
+<script type='text/javascript'>
+    /**
+    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//HiJenny.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+</div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='/head.png' alt='null'>
+					<div class="media__body">
+						<h4>Hi, Jenny</h4>
+						<p class='site-description'>Don’t Dissect The Frog, Build It</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="https://github.com/yang17" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.linkedin.com/in/yang17bu/" target="_blank">
+				        			
+				        				<i class="fab fa-linkedin"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.instagram.com/hiiii_jenny/" target="_blank">
+				        			
+										<i class="fab fa-instagram"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
+		
+		<span>Theme by <a href="http://github.com/yumemor">Yumemor</a>. Powered by <a href="http://hexo.io">Hexo</a></span>
+	</div>
+</footer>
+
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
+	
+		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
+</html>

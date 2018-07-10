@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>LintCode Notes | Hi, Jenny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+
+  </head>
+
+  <body>
+
+<header>
+	<a id="logo" href="/" title="Hi, Jenny">
+	<img src="/favicon.png" alt="Hi, Jenny"></a>
+	
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		  <ul id="menu-top" class="menu">
+
+			
+  			
+<div class="tagslist">
+	<p class="asidetitle">tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Algorithm/" title="Algorithm">Algorithm<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sort/" title="Sort">Sort<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Html/" title="Html">Html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gitpage/" title="Gitpage">Gitpage<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Socket/" title="Socket">Socket<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Restful/" title="Restful">Restful<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/macdown/" title="macdown">macdown<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+			
+		</ul>
+
+	</div>
+</nav>
+
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+  
+    <h1 class="post-title" itemprop="name">
+      LintCode Notes
+    </h1>
+  
+
+	<div class='post-body mb'>
+		<p>####1.Rectangle Overlap<br>【consider exceptions】 <code>1. x2太左了、太右了； 2. y2太上了、太下了</code></p>
+<p>####2.Longest Palindrome<br>【Hashset】</p>
+<pre><code> 一边装一边丢;
+ count + 2 ;
+ if(size != 0) ,count+1
+</code></pre><p>####3.Maximum Subtree<br>【设置全局变量TreeNode result 和Int max】</p>
+<pre><code>需要helper是因为原函数返回TreeNode，需要helper返回int，
+为什么一定要返回int ？ 这就是helper最后不能直接返回max，
+而是root.val + right + left 的原因-----&gt;
+因为我们全部扫了一遍，即使这个root不是最优值，我们也在往上面扫，所以往上传的是当前root的sum。 
+</code></pre><p>####5.Decode Way</p>
+<pre><code>f[n]=f[n-1](条件s[n]!=0) + f[n-2](条件是s[n-1]与s[n]组成的数字在10-26之间)
+</code></pre><p>####6.K Closest Points<br>【PriorityQueue】</p>
+<pre><code>    globalOrigin = origin;
+    PriorityQueue&lt;Point&gt; queue = new PriorityQueue&lt;Point&gt;(k, new Comparator&lt;Point&gt;() {
+        public int compare(Point a, Point b) {
+            //注意这里的globalorigin。如果用origin的话会报错：
+            //local variable origin is accessed from within inner class; needs to be declared final
+            //origin是个本地变量，被内建class访问时，需要在外面declare？
+            int diff = getDistance(b, globalOrigin) - getDistance(a, globalOrigin);
+            if(diff == 0) {
+                diff = b.x - a.x;
+            }
+            if (diff == 0) {
+                diff = b.y - a.y;
+            }
+            return diff;
+        }
+    });
+</code></pre><p>####7.Copy List with Random Pointer</p>
+<p>####8.Window Sum</p>
+<pre><code>1. 求某一段和： s[j] - s[k -1] 
+2. 求S[i] ： s[i] = s[i - 1] + a[i] 
+3. 节省空间
+法1. 链表保存sum
+法2. 数组滚动
+</code></pre><p>####9. Check Word Abbreviation</p>
+<pre><code>情况1.出现数字 while里面套while，计算num
+情况2.未出现数字 if (s[++] ！= a[++])
+</code></pre><p>####10. Words Abbreviation</p>
+<pre><code>所有string 的 prefix initial is 1，
+use Hashmap to count repeated 
+use while to scan ans[] 很多很多遍，
+each time, check ans[i] in map whether count &gt; 1 
+never mind the old string in map, Because  we scan the ans[] ,not map.
+注意挪动的是prefix，所以每次传入缩写函数的是dict而不是ans。
+</code></pre><p>####11 Mirror Numbers</p>
+<pre><code>1.使用Map存储pair
+2.用int[256] 来代替map存储char，节省空间！
+</code></pre><p>####12 Sliding Window<br>    idea : 1. use queue<br>    sum = sum + val - queue.pop()</p>
+<pre><code>2. use sum[100000] instead of queue
+sum[n~n+size] = sum[n+size] - sum[n]
+id ++
+3. use scroll: use mod to get id,
+actual_id = id % (size + 1);
+Eg: size = 3, id : 0,1,2,3,4,5 
+actual_id : 0 , 1, 2, 3 ,0,
+(here we initial sum = [size + 1])
+so that sum[actual_id] = sum[actual_id  - 1] + val
+still : sum[n~n+size] = sum[n+size] - sum[n]
+</code></pre><p>####13. Edit Distance<br>    if( == ) {( i,j ) = (i - 1, j - 1)}<br>    else{ (i, j) =  min[ (i - 1,j) ,(i , j - 1), (i - 1, j-1)  ] }</p>
+<p>####14. Edit Distance2<br>    if(n &gt; m){ return isOneEditDistance(t, s);}</p>
+<p>####15. Roman to Integer</p>
+<pre><code>1. except : 4 ,9, 40 ,90, 400, 900 ,others are all : left &gt; right ---&gt;left+right
+2. if left &lt; right : right - left
+3. use dict/map to store dictionary------&gt; use switch instead
+4. avoid discuss the last one:  
+  every for-loop 
+</code></pre><p>####16.Integer to Roman<br>      四个list就搞定了</p>
+<p>####17 Strings Serialization<br>      不适用StringBuilder的话，会time exceed<br>String 字符串常量<br>StringBuffer 字符串变量（线程安全）<br>StringBuilder 字符串变量（非线程安全）<br> 简要的说， String 类型和 StringBuffer 类型的主要性能区别其实在于 String 是不可变的对象, 因此在每次对 String 类型进行改变的时候其实都等同于生成了一个新的 String 对象，然后将指针指向新的 String 对象，所以经常改变内容的字符串最好不要用 String ，因为每次生成对象都会对系统性能产生影响，特别当内存中无引用对象多了以后， JVM 的 GC 就会开始工作，那速度是一定会相当慢的。<br> 而如果是使用 StringBuffer 类则结果就不一样了，每次结果都会对 StringBuffer 对象本身进行操作，而不是生成新的对象，再改变对象引用。所以在一般情况下我们推荐使用 StringBuffer </p>
+<p>先说一下集合的故事，HashTable是线程安全的，很多方法都是synchronized方法，而HashMap不是线程安全的，但其在单线程程序中的性能比HashTable要高。<br>StringBuffer和StringBuilder类的区别也是如此，他们的原理和操作基本相同，区别在于StringBufferd支持并发操作，线性安全的，适 合多线程中使用。StringBuilder不支持并发操作，线性不安全的，不适合多线程中使用。新引入的StringBuilder类不是线程安全的，但其在单线程中的性能比StringBuffer高。</p>
+<p>####18 Read Character from file<br>    buffer 有多少读多少/读完了再清空</p>
+<hr>
+<p>####19. Substring Anagrams<br>    use num to store char<br>    differencial == 0<br>    sliding window to miles &amp; add</p>
+<p>####20. Two Strings Are Anagrams</p>
+<p>####21. Word Abbreviation Set<br>      用count&gt;2的方法会time limit，因为你用了两个hashmap<br>      用一个hashmap<string abbr,="" set<all="" words="" which="" will="" become="" abbr="">&gt;  </string></p>
+<p>####22  Longest Consecutive Sequence<br>    // Can not sort —&gt; no sorting algorithm time complexity  is O(n)<br>    // 对于每一个nums[i],向左右延伸<br>    // 为什么延伸完了这一段可以remove？ 因为这一段必然和其他线段是断开的</p>
+<hr>
+<ol>
+<li>Identify Celebrity </li>
+<li>Load Balancer</li>
+<li>Convert BST to Greater Tree</li>
+<li>Binary Tree Leaves Order Traversal</li>
+<li>Binary Tree Flipping</li>
+<li>Inorder Successor in Binary Search Tree</li>
+<li>Word Break II</li>
+</ol>
+
+		
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li></ul>
+
+	</div>
+	<div class="meta split">
+		
+			<span>总阅读量 : <span id="busuanzi_value_page_pv"></span> 次</span>
+		
+		<time class="post-date" datetime="2017-06-30T22:14:52.000Z" itemprop="datePublished">2017-06-30</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	<div id="disqus_thread"></div>
+<script type='text/javascript'>
+    /**
+    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//HiJenny.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+</div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='/head.png' alt='null'>
+					<div class="media__body">
+						<h4>Hi, Jenny</h4>
+						<p class='site-description'>Don’t Dissect The Frog, Build It</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="https://github.com/yang17" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.linkedin.com/in/yang17bu/" target="_blank">
+				        			
+				        				<i class="fab fa-linkedin"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.instagram.com/hiiii_jenny/" target="_blank">
+				        			
+										<i class="fab fa-instagram"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
+		
+		<span>Theme by <a href="http://github.com/yumemor">Yumemor</a>. Powered by <a href="http://hexo.io">Hexo</a></span>
+	</div>
+</footer>
+
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
+	
+		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
+</html>
