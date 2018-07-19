@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>阿里巴巴-2018-校招内推-杭州 | Hi, Jenny</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+
+  </head>
+
+  <body>
+
+<header>
+	<a id="logo" href="/" title="Hi, Jenny">
+	<img src="/favicon.png" alt="Hi, Jenny"></a>
+	
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		  <ul id="menu-top" class="menu">
+
+			
+  			
+<div class="tagslist">
+	<p class="asidetitle">tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Algorithm/" title="Algorithm">Algorithm<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/CSS/" title="CSS">CSS<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Node-js/" title="Node.js">Node.js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Diary/" title="Diary">Diary<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java/" title="Java">Java<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Html/" title="Html">Html<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gitpage/" title="Gitpage">Gitpage<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/macdown/" title="macdown">macdown<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/PHP/" title="PHP">PHP<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Sort/" title="Sort">Sort<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Socket/" title="Socket">Socket<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Restful/" title="Restful">Restful<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/面经/" title="面经">面经<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+			
+		</ul>
+
+	</div>
+</nav>
+
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+  
+    <h1 class="post-title" itemprop="name">
+      阿里巴巴-2018-校招内推-杭州
+    </h1>
+  
+
+	<div class='post-body mb'>
+		<p>[toc]</p>
+<p>#阿里巴巴</p>
+<p>#网上面经总结</p>
+<p>##编程测试：</p>
+<blockquote>
+<p>1.题目：小猴子下山，沿着下山的路有一排桃树，每棵树都结了一些桃子。小猴子想摘桃子，但是又一些条件需要遵守，小瘦子只能沿着下山的方向走，不能回头，每棵树最多摘一个，而且一旦摘了一棵树的桃子，就不能再摘比这棵树结的桃子少的树上的桃子，那么小猴子最多能摘到几课桃子呢？<br>距离说明，比如有五棵树，分别结了10，4，5，12，8棵桃子，那么小猴子最多能摘3颗桃子，来自于结了4，5，12颗桃子的桃树。</p>
+<p>输入范例：<br>5<br>10<br>4<br>5<br>12<br>8<br>输出范例：<br>3</p>
+</blockquote>
+<pre><code class="java">    /*Solution 1: 最长递增子序列
+    DP[i] : longest incrasing subsequence include nums[i]
+    determination : Max_Value = Math.max(DP[i])
+    DP[0] = 1;
+    DP[i] =  0 ~ i - 1里 DP最大的那个。
+    也就是说，我们要check的是从0开始，从1开始，从2开始--走向j。
+    一定不可以只用count，那样只记录了从0走向J，那么会出现：
+    0， 1， 2， 7， 5，10 ，j在10的位置，那么count = 4 + 1。不对。
+
+    */
+
+//S1:    
+public class Main {
+
+   public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        int trees[] = new int[n];
+        for(int i=0;i&lt;n;i++){
+            trees[i] = input.nextInt();
+        }
+
+        int[]DP = new int[n];
+        DP[0] = 1;
+        int ans = 1;
+        //Wrong:
+        //for(int j = 1; j &lt; trees.length; j++){
+        //         int currentMax = 0;
+        //         for(int i = 0; i &lt; j; i++){
+        //             int count = 0;
+        //             if(nums[i] &lt; nums[j]){
+        //                 count++;
+        //             }
+        //             currentMax = Math.max(count,currentMax);
+        //         }
+        //         DP[j] = Math.max(currentMax + 1, DP[i]);
+        // }
+
+        for(int j = 1; j &lt; trees.length; j++){
+            int levelMax = 0;
+            for(int i = 0; i &lt; j; i++){
+                if(nums[i] &lt; nums[j]){
+                    levelMax = Math.max(levelMax, DP[i]);
+                }
+            }
+            DP[j] = levelMax + 1;
+            ans = Math.max(DP[j], ans);
+        }
+        return ans;
+
+
+/*
+    Solution 1 Time Complexity: o(n^2) --- Optimize : BST
+    Solution 2 : BST + DP
+
+    return DP[len];
+
+    8 5 7 2 1 0 6 9
+
+    8
+    5 7
+    2 7 
+    1 7
+    0 7
+    0 6 
+    0 6 9
+    return 3 
+
+    BST : find the first emelent bigger than target
+
+*/        
+
+
+//S2 : 
+
+public class Main(){
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        int nums[] = new int[n];
+        for(int i : nums){
+            i = intput.nexInt();
+        }
+
+        ArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();
+        list.add(nums[0]);
+
+        for(int i = 1; i &lt; nums.length; i++){
+            int target = nums[i];
+            int start = 0; int end = list.size() - 1;
+            while(start &lt;= end){
+                int mid = (end - start) / 2 + start;
+                if(list.get(mid) &lt; target){
+                    start = mid + 1;
+                }else{
+                    end = mid - 1;
+                }
+            }
+            if(list.get(start) &lt; target){
+                list.add(target);
+            }else{
+                list.set(start, target);
+            }
+        }
+        return list.size();
+    }
+}
+</code></pre>
+<p>##电话面试：</p>
+<h3 id="1-求一个数组前K小的数"><a href="#1-求一个数组前K小的数" class="headerlink" title="1.求一个数组前K小的数."></a>1.求一个数组前K小的数.</h3><pre><code class="java">    /*Solution*/
+
+    8 5 7 2 1 0 6 5 9   Eg : k = 3
+
+    1. Sort + for : nlog(n) --&gt; k
+    2. Quick Selection:
+    3. Heap : 
+        A. MinHeap : Store all, Space O(n) --&gt; Streaming flow !
+        B. MaxHeap : Store k
+                8 7 5
+                top.peek() 
+                if top &lt; nums[i]
+                    top.pop();
+                    insert(nums[i]);
+                Ans : top.peek();
+
+    Solution 3:            
+    public int findKthSmallest(int[] a, int k) {
+            Queue&lt;Integer&gt; queue = new PriorityQueue&lt;&gt;(
+                (a, b) -&gt; {b.val - a.val}
+            );
+        }
+
+        // heapify : o(k)
+        for(int i = 0; i &lt;k ; i++){
+            queue.offer(a[i]);
+        }        
+
+        //o(n - k)log(k) 
+        for(int i = k; i &lt; a.length; i++){
+            int head = queue.peek();
+            if(a[i] &lt; head){
+                queue.poll();
+                queue.offer(nums[i]);
+            }
+        }
+        return queue.peek();
+
+
+    Solution 2: QuickSelection
+
+    The basic idea is to use Quick Select algorithm to
+    partition the array with pivot:
+
+    Put numbers &lt; pivot to pivot&#39;s left
+    Put numbers &gt; pivot to pivot&#39;s right
+Then:
+if indexOfPivot == k, return A[k]
+else if indexOfPivot &lt; k, keep checking left part to pivot
+else if indexOfPivot &gt; k, keep checking right part to pivot
+
+
+
+public int findKthSmall(int[] nums, int k){
+        k--;
+        int start = 0; int end = nums.length - 1;
+        while(start + 1 &lt;  end){
+            int pivot = partation(nums, start, end);
+            System.out.println(pivot);
+            if (pivot &lt; k){
+                start = pivot + 1;
+            }else if(pivot &gt; k){
+                end = pivot - 1;
+            }else{
+                return nums[pivot];
+            }
+        }
+
+        if(start == k){
+            return nums[start];
+        }else{
+            return  nums[end];
+        }
+    }
+
+    private int partation(int[] nums, int left, int right){
+        int pivot = right;
+        int target = nums[right--];
+        while (left &lt;= right){
+            while (left &lt;= right &amp;&amp; nums[left] &lt; target){
+                left++;
+            }
+            while(left &lt;= right &amp;&amp; nums[right] &gt; target){
+                right--;
+            }
+
+            if(left &lt;= right){
+                swap(nums,left, right);
+            }
+
+        }
+
+        swap(nums, left, pivot);
+        return  left;
+    }
+</code></pre>
+<blockquote>
+<p>Fellow Up<br>Kth Smallest Element in a BST</p>
+</blockquote>
+<p>.</p>
+<h3 id="2-Sort"><a href="#2-Sort" class="headerlink" title="2. Sort"></a>2. Sort</h3><blockquote>
+<p><strong>【heapSort】</strong>–&gt; maxheap :  </p>
+<ol>
+<li>from bottom to up : BuildMaxheap  o(n)<br>continuously swap the heap with last one</li>
+<li>from up to bottom heapfiy   O(nlogn)</li>
+</ol>
+<p>就是1. heapfiy 2. 丢到末尾。 3.接着heapfiy， 再丢到末尾</p>
+<p>   Parent i<br>    left child 2i<br>    right child 2i + 1</p>
+<p>   <strong>【QuickSort】</strong><br>        choose more than 4 pivot, get median of it as pivot<br>        Time will converge to nlog(n)</p>
+<p>   <strong>【B-tree】</strong><br> 用于数据库索引，每个节点可以保存多个key<br> Assumption:<br> Maximum 3 keys in an internal node<br>   Maximum 3 keys in a leaf node </p>
+<ul>
+<li>A new key is always inserted into a leaf node first.</li>
+<li>If an overflow occurs at a leaf node, the node splits around the middle and the rightmost key of the left node is copied into its parent node. <ul>
+<li>If there is no parent node, a new level is created.</li>
+</ul>
+</li>
+<li>If an overflow occurs at an internal node, the node splits around the middle and the rightmost key of the left node is moved into its parent node. <ul>
+<li>If there is no parent node,a new level is created.</li>
+</ul>
+</li>
+</ul>
+<p>B+Tree<br>B-Tree有许多变种，其中最常见的是B+Tree，例如MySQL就普遍使用B+Tree实现其索引结构。</p>
+<p>与B-Tree相比，B+Tree有以下不同点：</p>
+<p>每个节点的指针上限为2d而不是2d+1。</p>
+<p>内节点不存储data，只存储key；叶子节点不存储指针。</p>
+</blockquote>
+<p>###MySQL索引</p>
+<blockquote>
+<ul>
+<li><p>B-Tree索引：<br>  所有值（被索引的列）都是排过序的，每个叶节点到跟节点距离相等。所以B-Tree适合用来查找某一范围内的数据<br>  Eg:Innodb myisam</p>
+</li>
+<li><p>Hash索引:<br>只支持精确查找，不支持范围查找，不支持排序。<br>KEY USING HASH(fname)<br>  Eg: Memory引擎</p>
+</li>
+<li><p>full-text索引: 主要用来查找文本中的关键字</p>
+</li>
+<li><p>r-tree索引:（空间）索引</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h3><ol>
+<li>原子性（Atomicity）<br>　　原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚</li>
+<li>一致性（Consistency）<br>　　一致性是指事务必须使数据库从一个一致性状态变换到另一个一致性状态，也就是说一个事务执行之前和执行之后都必须处于一致性状态</li>
+<li>隔离性（Isolation）<pre><code>　隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离
+</code></pre></li>
+<li>持久性（Durability）<br>持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的，即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作</li>
+</ol>
+<p>###MySQl 四种事务隔离级说明</p>
+<blockquote>
+<ul>
+<li>read uncommitted : A没提交， B就可以读 —&gt; 脏读</li>
+<li>read commited： A提交 B才可以读 —&gt; 大部分数据库采取的是这种</li>
+<li>repeatable： A提交了id = 3， 1000， B读不出来，B还是读的原始状态（只有id 1 和 id 2的信息），可是又不让B set id=3 ，数据重复。–&gt; 幻读</li>
+<li>serliazale : set B 为此等级， 则B在执行的时候，A被hand on，不能进行任何操作 –&gt; 影响性能</li>
+</ul>
+</blockquote>
+<p><a href="https://www.jianshu.com/p/4e3edbedb9a8" target="_blank" rel="external">https://www.jianshu.com/p/4e3edbedb9a8</a></p>
+<p>###3. HashMap 原理</p>
+<p>[源码分析]<a href="https://blog.csdn.net/zxt0601/article/details/77413921" target="_blank" rel="external">https://blog.csdn.net/zxt0601/article/details/77413921</a></p>
+<pre><code class="java">    1. HashMap --&gt; array + linkedlist
+                         consistant 连续存储 
+                         key-value o(1) 
+                         允许key值为null， value 为null
+                         它实现了Map&lt;K,V&gt;, Cloneable, Serializable接口。                
+
+    2. HashMap --&gt; hashcode（）+ 扰动函数
+        算法：对数组的大小取模 hash &amp; (length-1)
+        多对1的不可逆过程， 对于hashcode相同的Key：
+        我们用linkedlist来存的，也就是：
+        Array里的bucket。
+        然后每个linkedlist一个node是一个entry，key/value/next指针
+
+        ---&gt; 链表太长的问题。
+
+    3.collision 碰撞
+
+
+        A. java8 以后 linkedlist自动转化为红黑树 O(n)--O(log n)
+                java8 : getOrDefault()
+                java8 ： putIfAbsent（true：若key对应的value之前存在，不会覆盖）
+        B. load factor = bucket size/ Capacity = 0.75--&gt; resize 2倍
+
+
+
+
+扩容操作时，会new一个新的Node数组作为哈希桶，
+然后将原哈希表中的所有数据(Node节点)移动到新的哈希桶中，
+相当于对原哈希表中所有的数据重新做了一个put操作。
+所以性能消耗很大，可想而知，在哈希表的容量越大时，性能消耗越明显。        
+
+    4. 源码 
+
+    putVal() / onlyifAbsenct() 见图
+    resize() ：
+    **初始化或加倍哈希桶大小。
+    如果是当前哈希桶是null,分配符合当前阈值的初始容量目标。 
+    否则，判断 我们扩容成以前的两倍。
+    get():
+
+    HashMap的源码中，充斥个各种位运算代替常规运算的地方，以提升效率： 
+* 与运算替代模运算。求index时，用 hash &amp; (table.length-1) 替代 hash % (table.length) 
+* 用if ((e.hash &amp; oldCap) == 0)判断扩容后，节点e处于低区还是高区
+
+
+    5. HashTable VS HashMap
+
+     1) sychronized意味着在一次仅有一个线程能够更改Hashtable。
+     就是说任何线程要更新Hashtable时要首先获得同步锁，
+     其它线程要等到同步锁被释放之后才能再次获得同步锁更新Hashtable。 ---&gt;效率低
+
+    2) Fail-safe和iterator迭代器相关。（HashMap,Vector,ArrayList,HashSet）
+    如果某个集合对象创建了Iterator或者ListIterator，
+    然后其它的线程试图“结构上”更改集合对象，
+    将会抛出ConcurrentModificationException异常。
+    但其它线程可以通过set()方法更改集合对象是允许的，因为这并没有从“结构上”更改集合。
+    但是假如已经从结构上进行了更改，再调用set()方法，将会抛出IllegalArgumentException异常。
+
+    3) 结构上的更改指的是删除或者插入一个元素，这样会影响到map的结构。
+
+我们能否让HashMap同步？
+HashMap可以通过下面的语句进行同步：
+Map m = Collections.synchronizeMap(hashMap);    
+
+
+    6. 分布式存储，当每一个节点是一台机器的时候：
+        consistent hashing, 对2^32次方取模
+        将所有对象存储到离自己最近的机器中。
+        一致性hash算法可以均匀分担机器的负载，解决了分布式环境下机器需要增加或者减少的问题。
+
+
+    7. 内存泄露：
+    对于应用程序来说，当对象已经不再被使用，但是Java的垃圾回收器不能回收它们的时候，
+    就产生了内存泄露。
+    HashMap  ArrayList  Vector：静态变量的生命周期和应用程序一致，他们所引用的所有的对象Object也不能被释放
+    https://www.jianshu.com/p/d2823693ccc2
+
+
+    8. [服务器死循环]HashMap并非是线程安全的，
+        所以在高并发的情况下必然会出现问题。 
+
+    所以在并发的情况，发生扩容时，可能会产生循环链表，
+    在执行get的时候，会触发死循环，引起CPU的100%问题，
+    所以一定要避免在并发环境下使用HashMap。
+
+曾经有人把这个问题报给了Sun，不过Sun不认为这是一个bug，
+因为在HashMap本来就不支持多线程使用，要并发就用ConcurrentHashmap
+</code></pre>
+<p>###4. 红黑树原理和优势</p>
+<pre><code class="java">        BST tree 特点 : height log(n) --&gt; 
+                        anynode anyoperation -log(n)
+
+        red black tree: rotation --&gt; self balance
+        黑色是树干        红色是node
+           x               y
+        1     y          x   3
+            2   3       1  2
+
+        1.红&amp;黑    
+        2.root是黑的，insert是红的，
+        3.叶子到根的所有路径上不能有两个连续的红色节点  
+        4.从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。 
+
+    * AVL树的每个节点的左右子树的高度差不超过1
+</code></pre>
+<h3 id="5-jvm的内存模型"><a href="#5-jvm的内存模型" class="headerlink" title="5. jvm的内存模型"></a>5. jvm的内存模型</h3><p>程序计数器，虚拟机方法栈，本地方法栈，方法区，堆</p>
+<blockquote>
+<p>静态存储区（方法区）：主要存放静态数据、全局 static 数据和常量。这块内存在程序编译时就已经分配好，并且在程序整个运行期间都存在。</p>
+<p>栈区 ：当方法被执行时，方法体内的局部变量（其中包括基础数据类型、对象的引用）都在栈上创建，并在方法执行结束时这些局部变量所持有的内存将会自动被释放。因为栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。</p>
+<p>堆区 ： 又称动态内存分配，通常就是指在程序运行时直接 new 出来的内存，也就是对象的实例。这部分内存在不使用时将会由 Java 垃圾回收器来负责回收。</p>
+<p>程序计数器: 每当启动一个新线程时，都会为这个新线程创建一个自己的PC(程序计数器)寄存器.程序计数器的作用可以看做是当前线程所执行的字节码的行号指示器。</p>
+</blockquote>
+<h3 id="类装载器子系统"><a href="#类装载器子系统" class="headerlink" title="类装载器子系统"></a>类装载器子系统</h3><blockquote>
+<p>负责查找并装载Class 文件到内存，最终形成可以被虚拟机直接使用的Java类型，这个过程主要包括三个步骤。<br>（1）装载<br>装载过程负责找到二进制字节码并加载至JVM中，JVM通过类名、类所在的包名通过ClassLoader来完成类的加载，同样，也采用以上三个元素来标识一个被加载了的类：类名+包名+ClassLoader实例ID。<br>（2）链接<br>链接过程负责对二进制字节码的格式进行校验、初始化装载类中的静态变量以及解析类中调用的接口、类。<br>在完成了校验后，JVM初始化类中的静态变量，并将其值赋为默认值。<br>最后一步为对类中的所有属性、方法进行验证，以确保其需要调用的属性、方法存在，以及具备应的权限（例如public、private域权限等），会造成NoSuchMethodError、NoSuchFieldError等错误信息。<br>（3）初始化<br>初始化过程即为执行类中的静态初始化代码、构造器代码以及静态属性的初始化，在四种情况下初始化过程会被触发执行：<br>调用了new；反射调用了类中的方法；子类调用了初始化；JVM启动过程中指定的初始化类。</p>
+</blockquote>
+<h3 id="6-GC"><a href="#6-GC" class="headerlink" title="6. GC"></a>6. GC</h3><p>GC什么时候/对什么东西/做了什么事情<br><a href="http://wwwcomy.iteye.com/blog/1798255" target="_blank" rel="external">http://wwwcomy.iteye.com/blog/1798255</a></p>
+<p>简单理解Java的垃圾回收机制与finalize方法的作用<br><a href="https://www.jb51.net/article/74779.htm" target="_blank" rel="external">https://www.jb51.net/article/74779.htm</a></p>
+<h3 id="7-单例模式"><a href="#7-单例模式" class="headerlink" title="7. 单例模式"></a>7. 单例模式</h3><h3 id="8-Excption-与-Error-区别"><a href="#8-Excption-与-Error-区别" class="headerlink" title="8. Excption 与 Error 区别"></a>8. Excption 与 Error 区别</h3><blockquote>
+<p>Error 表示系统级的错误和程序不必处理的异常，是恢复不是不可能但很困难的情况下的一种严重问题；比如内存溢出，不可能指望程序能处理这样的状况；</p>
+<p>Exception 表示需要捕捉或者需要程序进行处理的异常，是一种设计或实现问题；也就是说，它表示如果程序运行正常，从不会发生的情况。<br>IllegalArgumentException();<br>NullPointerException();</p>
+<p>try-catch-finally – database.close()</p>
+</blockquote>
+<h3 id="9-子类能重写父类的构造函数吗"><a href="#9-子类能重写父类的构造函数吗" class="headerlink" title="9. 子类能重写父类的构造函数吗"></a>9. 子类能重写父类的构造函数吗</h3><blockquote>
+<p>子类 不可以 重写 父类 的 构造方法，因为构造方法是父类特有的,子类根本继承不了父类的构造函数，所以子类不可以重写父类的构造方法。<br>但是可以使用关键字 super 调用父类的构造方法。</p>
+</blockquote>
+<h3 id="10-怎么做出一个像淘宝那样每次打开都会给你推荐一些你可能喜欢的物品进行排序？【推荐算法】"><a href="#10-怎么做出一个像淘宝那样每次打开都会给你推荐一些你可能喜欢的物品进行排序？【推荐算法】" class="headerlink" title="10. 怎么做出一个像淘宝那样每次打开都会给你推荐一些你可能喜欢的物品进行排序？【推荐算法】"></a>10. 怎么做出一个像淘宝那样每次打开都会给你推荐一些你可能喜欢的物品进行排序？【推荐算法】</h3><h3 id="11-项目challenge"><a href="#11-项目challenge" class="headerlink" title="11. 项目challenge"></a>11. 项目challenge</h3><h3 id="12-个人经历"><a href="#12-个人经历" class="headerlink" title="12. 个人经历"></a>12. 个人经历</h3><p>&gt;<br>&gt;<br>&gt;<br>&gt;</p>
+<h3 id="iterator"><a href="#iterator" class="headerlink" title="iterator"></a>iterator</h3><h3 id="13-Collection"><a href="#13-Collection" class="headerlink" title="13. Collection"></a>13. Collection</h3><table>
+<thead>
+<tr>
+<th>Interface(接口):</th>
+<th style="text-align:right">具体类</th>
+<th style="text-align:center">算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>List</td>
+<td style="text-align:right">ArrayList/LinkedList</td>
+<td style="text-align:center">Collections()</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td style="text-align:right"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>Deque</td>
+<td style="text-align:right"></td>
+</tr>
+</tbody>
+</table>
+<p>Map –&gt; Hashmap</p>
+<p>├List<br>│├LinkedList<br>│├ArrayList<br>│└Vector<br>│　└Stack<br>└Set<br>|-HashSet<br>|-LinkedHashSet<br>|-TreeSet<br>Map<br>├Hashtable<br>├HashMap<br>└WeakHashMap</p>
+<blockquote>
+<p>List 必须保持元素特定的顺序<br>Set 不能有重复元素<br>Stack 先进后出<br>Map 一组成对的“键值对”对象</p>
+</blockquote>
+<h3 id="14-final"><a href="#14-final" class="headerlink" title="14. final"></a>14. final</h3><blockquote>
+<p>被final修饰的变量immutable<br>被 final 修饰的类不可继承    –&gt; String<br>被 final 修饰的 field 不可修改<br>被 final 修饰的 method 不可重写</p>
+</blockquote>
+<h3 id="15-Interface-amp-Abstract-class"><a href="#15-Interface-amp-Abstract-class" class="headerlink" title="15. Interface &amp; Abstract class"></a>15. Interface &amp; Abstract class</h3><ol>
+<li>一个类只能继承一个抽象类，而一个类却可以实现多个接口。</li>
+<li>Interface没有具体实现，抽象类可以有。</li>
+</ol>
+<h3 id="16-http状态码"><a href="#16-http状态码" class="headerlink" title="16. http状态码"></a>16. http状态码</h3><pre><code>    1. 临时响应
+    2. success
+    3. 重定向
+    4. error ： 404 get method
+    5. 服务器error： 503 停机维护
+</code></pre><h3 id="17-get-post（√）"><a href="#17-get-post（√）" class="headerlink" title="17. get/post（√）"></a>17. get/post（√）</h3><h3 id="18-RestFul-√"><a href="#18-RestFul-√" class="headerlink" title="18. RestFul(√)"></a>18. RestFul(√)</h3><h3 id="19-Session-amp-Cookie（√）"><a href="#19-Session-amp-Cookie（√）" class="headerlink" title="19. Session &amp; Cookie（√）"></a>19. Session &amp; Cookie（√）</h3><h3 id="20-JAVA多线程实现的三种方式"><a href="#20-JAVA多线程实现的三种方式" class="headerlink" title="20. JAVA多线程实现的三种方式"></a>20. JAVA多线程实现的三种方式</h3><pre><code>1、继承Thread类实现多线程
+</code></pre><pre><code class="java">public class MyThread extends Thread {
+　　public void run() {
+　　 System.out.println(&quot;MyThread.run()&quot;);
+　　}
+　　
+　　
+　　MyThread myThread1 = new MyThread();
+    MyThread myThread2 = new MyThread();
+    myThread1.start();
+    myThread2.start();
+</code></pre>
+<pre><code>2. 实现Runnable接口方式实现多线程
+</code></pre><pre><code class="java">    public class MyThread extends OtherClass implements Runnable {
+    　　public void run() {
+    　　 System.out.println(&quot;MyThread.run()&quot;);
+    　　}
+    }
+
+    MyThread myThread = new MyThread();
+    Thread thread = new Thread(myThread);
+    thread.start();
+
+    public void run() {
+    　　if (target != null) {
+    　　 target.run();
+    　　}
+    }
+
+
+3. 使用ExecutorService、Callable、Future实现有返回结果的多线程
+</code></pre>
+<ol>
+<li>IOC （√）</li>
+<li>AOP 以及动态代理</li>
+</ol>
+<h3 id="Message-Queue"><a href="#Message-Queue" class="headerlink" title="Message Queue"></a>Message Queue</h3><p>servlet是否是线程安全的</p>
+<p><a href="https://blog.csdn.net/ClementAD/article/details/50733042" target="_blank" rel="external">https://blog.csdn.net/ClementAD/article/details/50733042</a></p>
+<p>#我的电面</p>
+<h2 id="NIO-BIO"><a href="#NIO-BIO" class="headerlink" title="NIO BIO"></a>NIO BIO</h2><h2 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h2><p>什么时候会自己定义一个exception？<br>继承什么类？</p>
+<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><h2 id="分布式session"><a href="#分布式session" class="headerlink" title="分布式session"></a>分布式session</h2><h2 id="Object类的method"><a href="#Object类的method" class="headerlink" title="Object类的method"></a>Object类的method</h2><pre><code>    .clone()
+    .toString()
+</code></pre><h2 id="HashTable-和ConcurrentHashMap区别"><a href="#HashTable-和ConcurrentHashMap区别" class="headerlink" title="HashTable 和ConcurrentHashMap区别"></a>HashTable 和ConcurrentHashMap区别</h2><h2 id="搜索引擎"><a href="#搜索引擎" class="headerlink" title="搜索引擎"></a>搜索引擎</h2><h2 id="B-tree-为什么可以用来搜索"><a href="#B-tree-为什么可以用来搜索" class="headerlink" title="B+ tree 为什么可以用来搜索"></a>B+ tree 为什么可以用来搜索</h2><h2 id="Array-和-List-区别"><a href="#Array-和-List-区别" class="headerlink" title="Array 和 List 区别"></a>Array 和 List 区别</h2><h2 id="Abstract-Class-和-Interface-区别"><a href="#Abstract-Class-和-Interface-区别" class="headerlink" title="Abstract Class 和 Interface 区别"></a>Abstract Class 和 Interface 区别</h2><pre><code> 要答全
+</code></pre>
+		
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面经/">面经</a></li></ul>
+
+	</div>
+	<div class="meta split">
+		
+			<span>总阅读量 : <span id="busuanzi_value_page_pv"></span> 次</span>
+		
+		<time class="post-date" datetime="2018-07-16T06:50:40.000Z" itemprop="datePublished">2018-07-15</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	<div id="disqus_thread"></div>
+<script type='text/javascript'>
+    /**
+    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+
+    s.src = '//HiJenny.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+</noscript>
+
+
+  
+</div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='/head.png' alt='null'>
+					<div class="media__body">
+						<h4>Hi, Jenny</h4>
+						<p class='site-description'>Don’t Dissect The Frog, Build It</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="https://github.com/yang17" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.linkedin.com/in/yang17bu/" target="_blank">
+				        			
+				        				<i class="fab fa-linkedin"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://www.instagram.com/hiiii_jenny/" target="_blank">
+				        			
+										<i class="fab fa-instagram"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+			<span>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次, 访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
+		
+		<span>Theme by <a href="http://github.com/yumemor">Yumemor</a>. Powered by <a href="http://hexo.io">Hexo</a></span>
+	</div>
+</footer>
+
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
+	
+		<script async src="http://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
+</html>
